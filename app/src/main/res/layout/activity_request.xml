@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="fm.jbox.jboxfm.activities.RequestActivity"
+    android:id="@+id/requestLayout">
+
+    <VideoView
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:id="@+id/requestPlayer"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/panel"
+        android:orientation="horizontal"
+        android:layout_below="@+id/requestPlayer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/userThumbnail"
+            android:src="@drawable/com_facebook_profile_default_icon"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_alignTop="@+id/likeButton"
+            android:layout_toLeftOf="@+id/likeButton"
+            android:layout_toStartOf="@+id/likeButton" />
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guy Oliel"
+            android:textColor="#38B6AB"
+            android:textSize="26sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="5 minutes ago"
+            android:id="@+id/createdAt"
+            android:layout_below="@+id/userName"
+            android:layout_alignLeft="@+id/userName"/>
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/likeButton"
+            android:src="@drawable/ic_action"
+            android:background="#d6d6d6"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#C1C1C1"
+        android:text="Upped by:"
+        android:id="@+id/likedByText"
+        android:textSize="20sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/RelativeLayout3" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:id="@+id/userLikesList"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/likedByText"
+        android:background="#d6d6d6" />
+
+</RelativeLayout>

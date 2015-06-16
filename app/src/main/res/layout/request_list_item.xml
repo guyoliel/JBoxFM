@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="80dp">
+
+    <!--Bottom view start-->
+
+    <LinearLayout
+        android:id="@+id/bottom_wrapper"
+        android:layout_width="50dp"
+        android:weightSum="1"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/deleteButton"
+            android:src="@drawable/ic_action_delete"
+            android:background="#FF270D"/>
+    </LinearLayout>
+
+    <!--Bottom view end-->
+
+    <!--Surface view start-->
+    <RelativeLayout
+        android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/requestThumbnail"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/thumnail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/requestTitle"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/requestThumbnail"
+        android:layout_toEndOf="@+id/requestThumbnail"
+        android:layout_above="@+id/requestAuthor"
+        android:paddingLeft="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/requestAuthor"
+        android:layout_alignBottom="@+id/requestThumbnail"
+        android:layout_toRightOf="@+id/requestThumbnail"
+        android:layout_toEndOf="@+id/requestThumbnail"
+        android:paddingLeft="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/requestUrl"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/requestTitle"
+        android:layout_toEndOf="@+id/requestTitle"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/requestCreated"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/requestTitle"
+        android:layout_toEndOf="@+id/requestTitle"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/requestUser"
+        android:layout_alignBottom="@+id/requestTitle"
+        android:layout_toRightOf="@+id/requestTitle"
+        android:layout_toEndOf="@+id/requestTitle"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/requestLikes"
+        android:layout_below="@+id/requestTitle"
+        android:layout_toRightOf="@+id/requestAuthor"
+        android:layout_toEndOf="@+id/requestAuthor"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/likeCount"
+        android:layout_below="@+id/requestTitle"
+        android:layout_alignBottom="@+id/requestAuthor"
+        android:layout_alignTop="@+id/requestAuthor"
+        android:layout_toRightOf="@+id/requestAuthor"
+        android:paddingLeft="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/requestId"
+        android:layout_below="@+id/requestThumbnail"
+        android:layout_alignRight="@+id/requestTitle"
+        android:layout_alignEnd="@+id/requestTitle"
+        android:layout_marginTop="74dp"
+        android:visibility="gone" />
+    </RelativeLayout>
+    <!--Surface view ends-->
+</com.daimajia.swipe.SwipeLayout>
