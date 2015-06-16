@@ -34,12 +34,15 @@ public class AsyncCreateParty extends AsyncTask<String, Void, Void> {
             json.put("user_access_token", MyApp.userJson.getString("access_token"));
             json.put("party",party);
 
-            StringEntity se = new StringEntity(json.toString());
-            se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,"application/json"));
+            StringEntity se = new StringEntity(json.toString(),"UTF-8");
+            se.setContentType("application/json;charset=UTF-8");
+            se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,"application/json;charset=UTF-8"));
             HttpPost post = new HttpPost(u.toURI());
             post.setEntity(se);
+            post.setHeader(HTTP.CONTENT_TYPE, "application/json; charset=UTF-8");
+            post.setHeader("Accept", "application/json");
             response = client.execute(post);
-
+            Log.i("JSON",json.toString());
             if(response != null) {
                 InputStream is = response.getEntity().getContent();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is,"UTF-8"),8);

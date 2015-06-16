@@ -36,7 +36,7 @@ public class AsyncServerLogin extends AsyncTask<String, Void, String> {
             json.put("access_token", Session.getActiveSession().getAccessToken());
             json.put("expires_in", Session.getActiveSession().getExpirationDate());
             Log.i("JSON",json.toString());
-            StringEntity se = new StringEntity(json.toString());
+            StringEntity se = new StringEntity(json.toString(),"UTF-8");
             se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,"application/json"));
             HttpPost post = new HttpPost(u.toURI());
             post.setEntity(se);

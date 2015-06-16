@@ -25,6 +25,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.security.Key;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,14 +61,14 @@ public class CreateRequestTask extends AsyncTask<String, Void, Void> {
             json.put("user_access_token", MyApp.userJson.getString("access_token"));
             Log.i("HttpResponse",json.toString());
 
-            StringEntity se = new StringEntity(json.toString());
+            StringEntity se = new StringEntity(json.toString(),"UTF-8");
             HttpPost post = new HttpPost(params[0]);
-            se.setContentType("application/json");
-            post.setHeader(HTTP.CONTENT_TYPE, "application/json");
+            se.setContentType("application/json;charset=UTF-8");
+            se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,"application/json;charset=UTF-8"));
+            post.setHeader(HTTP.CONTENT_TYPE, "application/json; charset=UTF-8");
             post.setHeader("Accept", "application/json");
             post.setEntity(se);
             response = client.execute(post);
-
             if(response != null) {
                 InputStream is = response.getEntity().getContent();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is,"UTF-8"),8);

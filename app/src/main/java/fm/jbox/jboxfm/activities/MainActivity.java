@@ -41,7 +41,7 @@ public class MainActivity extends ActionBarActivity implements CreatePartyDialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ctx = this;
-
+        //View setup
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
 
         tabHost.setup();
@@ -65,6 +65,9 @@ public class MainActivity extends ActionBarActivity implements CreatePartyDialog
             tv.setTextColor(Color.parseColor("#FFFFFF"));
         }
 
+        SetTitle();
+
+        //Parties tab starts
         lv = (ListView) findViewById(R.id.partyList);
 
         loadParties();
@@ -87,7 +90,11 @@ public class MainActivity extends ActionBarActivity implements CreatePartyDialog
                 }
 
         );
-        SetTitle();
+
+        //Parties tab ends
+
+        //Search tab starts
+
     }
 
 
