@@ -31,6 +31,7 @@ import org.json.JSONException;
 
 import fm.jbox.jboxfm.R;
 import fm.jbox.jboxfm.dialogs.DeletePartyDialog;
+import fm.jbox.jboxfm.dialogs.NoRequestsPopUp;
 import fm.jbox.jboxfm.models.Request;
 import fm.jbox.jboxfm.tasks.AsyncRequestListLoader;
 import fm.jbox.jboxfm.tasks.DeleteTask;
@@ -175,10 +176,15 @@ public class PartyActivity extends ActionBarActivity implements SwipeRefreshLayo
                 isPlaying = true;
                 Request item = (Request) lv.getItemAtPosition(0);
                 Log.i("ITEM", item.toString());
-                this.url = item.getUrl();
-                Log.i("URL", this.url);
-                new GetVideoUrlTask(player, this).execute(this.url);
+                url = item.getUrl();
+                Log.i("URL", url);
+                new GetVideoUrlTask(player, ctx).execute(url);
             }
+        }
+        else
+        {
+            DialogFragment newFragment = new NoRequestsPopUp();
+            newFragment.show(getFragmentManager(), "Error");
         }
     }
 
@@ -281,6 +287,7 @@ public class PartyActivity extends ActionBarActivity implements SwipeRefreshLayo
     @Override
     protected void onResume() {
         super.onResume();
-
+        AsyncRequestListLoader task = new AsyncRequestListLoader(ctx,lv,userId);
+        task.execute("http://music-hasalon-api.herokuapp.com/parties/"+id);
     }
 }

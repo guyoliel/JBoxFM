@@ -56,6 +56,9 @@ public class SimplePartyAdapter extends ArrayAdapter<Party> {
 
         TextView id = (TextView) v.findViewById(R.id.partyId);
         id.setText(p.getId());
+
+        TextView partyCode = (TextView) v.findViewById(R.id.partyCodeDisplay);
+        partyCode.setText("Party Code: "+p.getId());
         Log.i(TAG, id.getText().toString());
         return v;
     }
