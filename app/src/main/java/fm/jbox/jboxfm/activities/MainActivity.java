@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TabHost;
@@ -22,12 +23,16 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.facebook.Session;
 
 import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 import fm.jbox.jboxfm.R;
 import fm.jbox.jboxfm.dialogs.CreatePartyDialog;
 import fm.jbox.jboxfm.dialogs.LogOutDialog;
 import fm.jbox.jboxfm.tasks.AsyncCreateParty;
 import fm.jbox.jboxfm.tasks.AsyncPartyListLoader;
+import fm.jbox.jboxfm.tasks.GetPartyTask;
 
 
 public class MainActivity extends ActionBarActivity implements CreatePartyDialog.CreatePartyDialogListener, LogOutDialog.LogOutDialogListener {
@@ -76,15 +81,15 @@ public class MainActivity extends ActionBarActivity implements CreatePartyDialog
                 new OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent i = new Intent(ctx,PartyActivity.class);
+                        Intent i = new Intent(ctx, PartyActivity.class);
                         TextView partyId = (TextView) view.findViewById(R.id.partyId);
-                        Log.i(tag,partyId.getText().toString());
-                        i.putExtra("partyId",partyId.getText());
+                        Log.i(tag, partyId.getText().toString());
+                        i.putExtra("partyId", partyId.getText());
                         TextView partyName = (TextView) view.findViewById(R.id.partyName);
-                        i.putExtra("partyName",partyName.getText());
+                        i.putExtra("partyName", partyName.getText());
 
                         TextView partyUser = (TextView) view.findViewById(R.id.partyUser);
-                        i.putExtra("partyUserId",partyUser.getText());
+                        i.putExtra("partyUserId", partyUser.getText());
                         startActivity(i);
                     }
                 }
@@ -95,6 +100,22 @@ public class MainActivity extends ActionBarActivity implements CreatePartyDialog
 
         //Search tab starts
 
+        Button searchButton = (Button) findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        JSONObject party = new GetPartyTask().execute(partyCode.getText().toString()).get().getJSONObject("party");
+                        Intent i = new Intent(ctx, PartyActivity.class);
+                        i.putExtra("partyId",party.getString("id"));
+                        i.putExtra("partyName",party.getString("name"));
+                        i.putExtra("partyUserId",party.getJSONObject("user").getString("id"));
+                        startActivity(i);
+                    }catch(ExecutionException|InterruptedException|JSONException ex){ex.printStackTrace();}
+
+                }
+        });
     }
 
 
