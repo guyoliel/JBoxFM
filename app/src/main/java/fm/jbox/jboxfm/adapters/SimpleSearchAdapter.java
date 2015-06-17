@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import fm.jbox.jboxfm.R;
+import fm.jbox.jboxfm.activities.MyApp;
 import fm.jbox.jboxfm.models.Request;
 import fm.jbox.jboxfm.models.Video;
 import fm.jbox.jboxfm.tasks.DownloadImageTask;
@@ -49,6 +50,7 @@ public class SimpleSearchAdapter extends ArrayAdapter<Video> {
         if(getItem(position)!=null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             View v = inflater.inflate(R.layout.search_list_item, parent, false);
+
             Log.i(TAG, getItem(position).toString());
             Video vid = getItem(position);
 

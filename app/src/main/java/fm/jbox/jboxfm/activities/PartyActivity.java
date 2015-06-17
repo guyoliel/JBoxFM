@@ -70,7 +70,7 @@ public class PartyActivity extends ActionBarActivity implements SwipeRefreshLayo
                         DeleteTask d = new DeleteTask();
                         String d_result = d.execute("http://music-hasalon-api.herokuapp.com/requests/" + ((Request) (lv.getItemAtPosition(0))).getId()).get();
                     }
-                        AsyncRequestListLoader task = new AsyncRequestListLoader(ctx, lv);
+                        AsyncRequestListLoader task = new AsyncRequestListLoader(ctx, lv,userId);
                     String t_string = task.execute("http://music-hasalon-api.herokuapp.com/parties/" + id).get().toString();
                     if (lv.getCount() >1) {
                         Request item = (Request) lv.getItemAtPosition(1);
@@ -86,7 +86,7 @@ public class PartyActivity extends ActionBarActivity implements SwipeRefreshLayo
                 }
             }
         });
-        AsyncRequestListLoader task = new AsyncRequestListLoader(this,lv);
+        AsyncRequestListLoader task = new AsyncRequestListLoader(this,lv,userId);
         task.execute("http://music-hasalon-api.herokuapp.com/parties/"+id);
         try {
             if (userId.equals(MyApp.userJson.getString("id"))) {
@@ -164,7 +164,7 @@ public class PartyActivity extends ActionBarActivity implements SwipeRefreshLayo
        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                AsyncRequestListLoader task = new AsyncRequestListLoader(ctx,lv);
+                AsyncRequestListLoader task = new AsyncRequestListLoader(ctx,lv,userId);
                 task.execute("http://music-hasalon-api.herokuapp.com/parties/"+id);
                 swipeContainer.setRefreshing(false);
             }

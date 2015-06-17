@@ -32,19 +32,21 @@ public class AsyncRequestListLoader extends AsyncTask<String, Void, List<Request
     private String tag = "AsyncParty";
     private Context myContext;
     private ListView lv;
+    private String partyOwnerId;
    // private VideoView player;
 
-    public AsyncRequestListLoader(Context ctx, ListView lv)
+    public AsyncRequestListLoader(Context ctx, ListView lv,String partyOwnerId)
     {
         this.myContext = ctx;
         this.lv = lv;
+        this.partyOwnerId = partyOwnerId;
        // this.player = player;
     }
 
     @Override
     protected void onPostExecute(List<Request> result) {
         super.onPostExecute(result);
-        ListAdapter adpt = new SimpleRequestAdapter(this.myContext,result);
+        ListAdapter adpt = new SimpleRequestAdapter(this.myContext,result,this.partyOwnerId);
         Log.i(tag, "before Set Request");
         this.lv.setAdapter(adpt);
         Log.i(tag, "After Set");
